@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Araza Artesanías</title>
+	<link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0">
+</head>
+<body>
+	<div class="container clearfix">
+    <!-- TITULO -->
+		<div id="logo" class="grid_4">
+			<object data="img/logo.svg" type="image/svg+xml" class="logo">
+				<!--[if lte IE 8 ]-->
+				<img src="img/logo.gif" alt="Araza Artesanías">
+				<!--![endif]-->
+			</object>
+		</div>
+        <div id="title" class="grid_8 omega">
+        	<img src="img/title.png" width="100%" />
+        </div>
+    <!-- MENNU -->
+			<div id="nav" class="grid_8 omega">
+            	<ul>
+					<li class="index"><a href="index.html">Inicio</a></li>
+                	<li class="donde"><a href="donde.html">¿Dónde?</a></li>
+                	<li class="gallery"><a href="gallery.php">Galería</a></li>
+                	<li class="contact"><a href="contact.html">Contacto</a></li>
+                </ul>
+		    </div>
+    <!-- CONTENIDO -->
+		<div id="locations" class="grid_12">
+					<p class="static_map">
+						<img src="http://maps.googleapis.com/maps/api/staticmap?
+                        		  key=AIzaSyATYKsWeLP4-Xxr1eMDxiCCKQXlk_U4AZM&
+                            	  size=400x300&sensor=false&markers=-34.834413,-55.980066" 
+                        	 alt="Avenida Ing. Luis Giannattasio, Manzana 31 Solar 15, Ciudad de la Costa">
+					</p>
+		</div>
+		<div class="grid_6">
+			<h2 class="rutas">Cómo llegar</h2>
+				<form action="http://maps.google.com/maps" method="get" target="_blank">
+				<p>Ingrese su dirección:</p>
+				<input type="text" name="saddr" />
+				<input type="hidden" name="daddr" value="-34.834278,-55.979878" />
+                <br />
+                <br />
+				<input type="submit" value="Direcciones" />
+				</form>		
+				</div>
+		<div class="grid_5">
+            <ul id="display-inline-block">
+                <li><a href="img/DSC00951.JPG" rel="lightbox">
+                        <img class="shadow" src="img/DSC00951.JPG"  width=70 border=0 /></a></li>
+                <li><a href="img/DSC00952.JPG" rel="lightbox">
+                        <img class="shadow" src="img/DSC00952.JPG"  width=70 border=0 /></a></li>
+                <li><a href="img/DSC00953.JPG" rel="lightbox">
+                        <img class="shadow" src="img/DSC00953.JPG"  width=70 border=0 /></a></li>
+                <li><a href="img/DSC00955.JPG" rel="lightbox">
+                        <img class="shadow" src="img/DSC00955.JPG"  width=70 border=0 /></a></li>
+                <li><a href="img/DSC00956.JPG" rel="lightbox">
+                        <img class="shadow" src="img/DSC00956.JPG"  width=70 border=0 /></a></li>
+            </ul>
+        </div>
+	<div class="grid_12" id="bottom">
+    	<div class="grid_6">
+		<h3>Seguinos en Facebook</h3>
+			<iframe height="100%" width="100%" src="https://www.facebook.com/plugins/like.php?href=https://www.facebook.com/pages/Araza-Artesanias/150463431636129?ref=ts&fref=ts"
+					scrolling="no" 
+                    frameborder="0"
+                    style="border:none">
+                </iframe>
+        </div>
+		<div class="grid_5">
+        	<h3>Taller Araza Showroom</h3>
+				<p>Local: 2682 48 50<br>Email us: <a href="#">araza.artesanias@gmail.com</a></p>
+					<address>
+						Avenida Ing. Luis Giannattasio, Manzana 31 Solar 15<br>Ciudad de la Costa, Canelones
+					</address>
+
+        </div>
+		</div>
+
+	</div>
+				<script type="text/javascript" src="js/jquery.js"></script>
+				<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATYKsWeLP4-Xxr1eMDxiCCKQXlk_U4AZM&sensor=false">
+				</script>
+				<script type="text/javascript" src="js/prototype.js"></script>
+    			<script type="text/javascript" src="js/scriptaculous.js?load=effects,builder"></script>
+    			<script type="text/javascript" src="js/lightbox.js"></script>
+				<script type="text/javascript">
+				jQuery("#locations").prepend('<div id="map"></div>');
+				jQuery(".static_map").remove();
+				  var map;
+				  var center;
+			      function initialize() {
+        					var mapOptions = {
+          						center: new google.maps.LatLng(-34.834278,-55.979878),
+          						zoom: 15,
+          						mapTypeId: google.maps.MapTypeId.ROADMAP
+        						};
+        					map = new google.maps.Map(document.getElementById("map"), mapOptions);
+						    var marker = new google.maps.Marker({
+      									 position: mapOptions.center,
+      									 map: map,
+								         title: 'Avenida Ing. Luis Giannattasio, Manzana: 31 Solar: 15'
+								  });
+     						}
+														
+				  initialize();
+      			  <!-- google.maps.event.addDomListener(window, 'load', initialize); --!>
+				  google.maps.event.addDomListener(map, "idle", function(){
+																	center = map.getCenter();
+																	});
+				  jQuery(window).resize(function(){
+									map.setCenter(center);
+									});
+
+				</script>
+</body>
+
+</html>

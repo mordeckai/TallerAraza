@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Araza Artesanías</title>
+    <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"> 
+    <link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen"> 
+    <link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div class="container clearfix">
+    <!-- TITULO -->
+		<div id="logo" class="grid_4">
+			<object data="img/logo.svg" type="image/svg+xml" class="logo">
+				<!--[if lte IE 8 ]-->
+				<img src="img/logo.gif" alt="Araza Artesanías">
+				<!--![endif]-->
+			</object>
+		</div>
+        <div id="title" class="grid_8 omega">
+        	<img src="img/title.png" width="100%" />
+        </div>
+    <!-- MENNU -->
+			<div id="nav" class="grid_8 omega">
+            	<ul>
+					<li class="index"><a href="index.html">Inicio</a></li>
+                	<li class="donde"><a href="donde.html">¿Dónde?</a></li>
+                	<li class="gallery"><a href="gallery.php">Galería</a></li>
+                	<li class="contact"><a href="contact.html">Contacto</a></li>
+                </ul>
+		    </div>
+    <!-- CONTENIDO -->
+		<div class="grid_11">
+			<div id="form" class="grid_12 omega">
+				<h3>e-mail</h3>
+					<p class="grid_6" id="comments">Los campos con * son obligatorios</p>
+						<form action="contact.php" method="post">
+							<p>
+								<label for="name">Nombre*:</label>
+								<input name="name" id="name" type="text" class="required">
+								<span>Por Favor, Ingrese su nombre</span>
+							</p>
+							<p>
+								<label for="email">E-mail*:</label>
+								<input name="email" id="email" type="text" class="required"> 
+								<span>Por favor, Ingrese un e-mail válido</span>
+							</p>
+							<p>
+								<label for="subject">Tema:</label>
+								<input name="subject" id="subject" type="text"> 
+								<span>Por Favor, Ingrese un tema</span>
+							</p>
+							<p>
+                            	<label for="message">Mensaje*</label>
+                            	<textarea name="message" id="message" class="required"></textarea> 
+                            	<span>Por favor, Ingrese su mensaje</span>
+                        	</p>
+                        	<p class="submit">
+                            	<input type="submit" value="Enviar" class="btn-submit">
+                        	</p>
+						</form>
+			</div>
+		</div>
+		<div class="grid_12" id="bottom">
+    	<div class="grid_6">
+		<h3>Seguinos en Facebook</h3>
+			<iframe height="100%" width="100%" src="https://www.facebook.com/plugins/like.php?href=https://www.facebook.com/pages/Araza-Artesanias/150463431636129?ref=ts&fref=ts"
+					scrolling="no" 
+                    frameborder="0"
+                    style="border:none">
+                </iframe>
+        </div>
+		<div class="grid_5">
+        	<h3>Taller Araza Showroom</h3>
+				<p>Local: 2682 48 50<br>Email us: <a href="#">araza.artesanias@gmail.com</a></p>
+					<address>
+						Avenida Ing. Luis Giannattasio, Manzana 31 Solar 15<br>Ciudad de la Costa, Canelones
+					</address>
+
+        </div>
+		</div>
+	</div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/validEmail.js"></script>
+	<script type="text/javascript">
+			var $submit = $(".submit input");
+			var $required = $(".required");
+			function containsBlanks(){
+				var blanks = $required.map(function(){ return $(this).val() == "";});
+				return $.inArray(true, blanks) != -1;
+			}
+
+			function isValidEmail(email){
+				return email.indexOf("@") != -1;
+			}
+
+			function requiredFilledIn(){
+				if(containsBlanks() || !isValidEmail($("#email").val())) 
+					$submit.attr("disabled","disabled");
+				else 
+					$submit.removeAttr("disabled");
+			}
+
+			$("#form span").hide();
+			$("input,textarea").focus(function(){
+				$(this).next().fadeIn("slow");
+			}).blur(function(){
+				$(this).next().fadeOut("slow");
+			}).keyup(function(){
+				//Check all required fields.
+				requiredFilledIn();
+			});
+			
+			$("#email").validEmail({on:"keyup", success:function(){
+ 				$(this).next().removeClass("error").addClass("valid");
+			}, failure:function(){
+				$(this).next().removeClass("valid").addClass("error");
+			}});
+
+
+			requiredFilledIn();
+		</script>
+</body>
+</html>
